@@ -1,0 +1,40 @@
+<?php
+$Date = date("Y-m-d");
+$Name=$Username1;
+$Email=$Email1;
+require 'email/PHPMailerAutoload.php';
+$mail= new PHPMailer;
+$mail->isSMTP();
+$mail->Host='smtp.gmail.com';
+$mail->Port=587;
+$mail->SMTPAuth=true;
+$mail->SMTPSecure='tls';
+
+$mail->Username='example@gmail.com';  /* mail address of your gmail account*/
+$mail->Password='Password';  /* password of your gmail account*/
+
+		
+$mail->setFrom('website');  /* name that will appear when mail is send */
+$mail->addAddress($Email); /* mail address of that person you want to send mail to */
+$mail->addReplyTo('noreply@gmail.com');  /* mail address for Reply use */
+ 
+
+$mail->isHTML(true);
+$mail->Subject=('Sending mail'); /* subject for the mail */
+
+$Message = 'Hi this is Kashif Imran Sending message to u '; /* message body for the mail */
+
+$mail->Body=$Message;
+
+if(!$mail->send())
+{
+	echo"<p class='errormsg'>Send unsuccess</p>";	
+}
+else
+{
+	echo"<p class='errormsg'>Send user success</p>";	
+}
+/* download files for the email method from here 
+https://github.com/kashif0313/Smtp-mail-method
+*/
+?>
